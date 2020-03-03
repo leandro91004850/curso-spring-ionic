@@ -39,8 +39,8 @@ export class HomePage {
      // this.navCtrl.push('CategoriaPage'); // empilhar uma pagina sobre a outra com push
      this.auth.autenticacao(this.creds)
      .subscribe(response => { // if else
-       console.log(response.headers.get('autorizado com sucesso'));
-       this.navCtrl.setRoot('CategoriaPage');
+      this.auth.successfulLogin(response.headers.get('Authorization'));
+      this.navCtrl.setRoot('CategoriaPage');
      },
       error => {});
     }
