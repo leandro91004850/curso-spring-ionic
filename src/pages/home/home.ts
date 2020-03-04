@@ -33,8 +33,17 @@ export class HomePage {
 
     }
 
-// navegação da pagina home para categoria
+    ionViewDidEnter(){
+      this.auth.refreshToken()
+      .subscribe(response => { // if else
+       this.auth.successfulLogin(response.headers.get('Authorization'));
+       this.navCtrl.setRoot('CategoriaPage');
+      },
+       error => {});
 
+    }
+
+// navegação da pagina home para categoria
   login(){
      // this.navCtrl.push('CategoriaPage'); // empilhar uma pagina sobre a outra com push
      this.auth.autenticacao(this.creds)
